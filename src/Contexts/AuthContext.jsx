@@ -10,6 +10,8 @@ export const AuthProvider = ({children}) => {
   const [error, setError] = useState(null)
   const navigate = useNavigate()
 
+  const user = JSON.parse(sessionStorage.getItem('user'))
+
   const handleLogin = async (e, data) => {
     e.preventDefault();
 
@@ -45,7 +47,7 @@ export const AuthProvider = ({children}) => {
   },[])
 
   return (
-    <AuthContext.Provider value={{isAuthenticated,handleLogin,handleLogout,error}}>
+    <AuthContext.Provider value={{isAuthenticated,handleLogin,handleLogout,error,user}}>
       {children}
     </AuthContext.Provider>
   )

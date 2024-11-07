@@ -4,13 +4,13 @@ import { useAuth } from '../../Contexts/AuthContext';
 
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const { user } = useAuth()
 
-  if (!isAuthenticated) {
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return children
 };
 
 export default ProtectedRoute;
