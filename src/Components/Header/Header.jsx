@@ -1,8 +1,20 @@
 
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Header({ user, onLogout }) {
+function Header({ user, logout }) {
+
+  const [open, setOpen] = useState(false)
+
+  const toggleOpen = () => setOpen(!open)
+  const navigate = useNavigate()
+
+  const onLogout = () => {
+    logout()
+    navigate('/login')
+  }
+  
   return (
     <header className="bg-white border-b shadow">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +44,7 @@ function Header({ user, onLogout }) {
           <div className="flex items-center">
             {user ? (
               <div className="ml-4 relative">
-                <button className="flex items-center text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring">
+                <button onClick={toggleOpen} className="flex items-center text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring">
                   <span className="mr-2">{user.name}</span>
                   <img
                     className="h-8 w-8 rounded-full"
@@ -41,7 +53,7 @@ function Header({ user, onLogout }) {
                   />
                 </button>
                 {/* Dropdown */}
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                {open && <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                   <Link
                     to="/profile"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -54,7 +66,7 @@ function Header({ user, onLogout }) {
                   >
                     Logout
                   </button>
-                </div>
+                </div>}
               </div>
             ) : (
               <div className="flex space-x-4">
@@ -81,7 +93,7 @@ function Header({ user, onLogout }) {
 
 Header.propTypes = {
     user: PropTypes.object,
-    onLogout:PropTypes.func
+    logout:PropTypes.func
 };
 
 export default Header;

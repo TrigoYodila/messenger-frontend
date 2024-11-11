@@ -22,7 +22,6 @@ const useEcho = user => {
                                 channel_name: channel.name
                             })
                             .then(response => {
-                                console.log("Cooletta echo ", response)
                                 callback(false, response.data);
                             })
                             .catch(error => {
