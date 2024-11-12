@@ -16,7 +16,7 @@ function Header({ user, logout }) {
   }
   
   return (
-    <header className="bg-white border-b shadow">
+    <header className="bg-white border-b shadow sticky w-full z-40 top-0 left-0">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
