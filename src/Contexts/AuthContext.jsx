@@ -23,7 +23,7 @@ export const AuthProvider = ({children}) => {
         sessionStorage.setItem('user', JSON.stringify(res.data.user))
         setIsAuthenticated(true)
         setError(null); 
-        navigate('/dashboard')
+        navigate('/chat')
       }
     // eslint-disable-next-line no-unused-vars
     } catch (err) {

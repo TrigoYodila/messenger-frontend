@@ -13,6 +13,8 @@ const ConversationItem = ({
 
     let classes = 'border-transparent'
 
+    // console.log("Conversation ", conversation)
+
     if(selectedConversation){
         if(!selectedConversation.is_group && !conversation.is_group && selectedConversation.id == conversation.id){
             classes = 'border-blue-500 bg-black/20'
@@ -24,12 +26,12 @@ const ConversationItem = ({
     
   return (
     <Link
-        href={
-            conversation.is_group ? '/conversations/group' : '/conversations/user'
+        to={
+            conversation?.is_group ? `/chat/group/${conversation?.id}` : `/chat/user/${conversation?.id}`
         }
-        className={'conversation-item flex items-center gap-2 p-2 text-gray-300 transition-all cursor-pointer hover:bg-black/30' 
-            + classes + (conversation?.is_user && currentUser?.is_admin ? 'pr-2' : 'pr-4')}
-    >
+        preserveState
+        className={'hover:bg-black/30 conversation-item flex items-center gap-2 p-2 text-gray-300 transition-all cursor-pointer' 
+            + classes + (conversation?.is_user && currentUser?.is_admin ? 'pr-2' : 'pr-4')}>
         { conversation?.is_user && (
             <UserAvatar user={conversation} online={online}/>
         )}

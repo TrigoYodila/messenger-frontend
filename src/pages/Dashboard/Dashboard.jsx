@@ -5,6 +5,10 @@ import useEcho from "../../hooks/echo"
 import { axios, baseURL } from "../../config/axios"
 import TextInput from "../../Components/TextInput/TextInput"
 import ConversationItem from "../../Components/ConversationItem/ConversationItem"
+import GroupConverastion from "./GroupConverastion"
+import UserConversation from "./UserConversation"
+import { Route, Routes } from "react-router-dom"
+import Home from "./Home"
 
 const Dashboard = () => {
 
@@ -20,7 +24,8 @@ const Dashboard = () => {
   const echo = useEcho(user)
 
   const isUserOnline = (userId) => onlineUsers[userId]
-  console.log("Conversations", conversations)
+
+  console.log("Conversations ", conversations)
 
   const onSearch = (ev) => {
     const search = ev.target.value.toLowerCase()
@@ -111,9 +116,9 @@ const Dashboard = () => {
   }, [echo, user])
 
   return (
-    <div className="flex-1 w-full flex overflow-hidden">
+    <div className="flex-1 w-full flex overflow-hidden h-screen">
        <div className={`p-4 transition-all w-full sm:w-[250px] md:w-[370px] bg-slate-800 flex flex-col gap-2 overflow-hidden ${selectedConversation ? '-ml-[100%] sm:ml-0' : ''}`}>
-          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium">
+          <div className="flex items-center justify-between py-2 px-3 text-xl font-medium text-gray-200">
             My Conversations
             <div className="tooltip tooltip-left" data-tip="Create nez Group">
               <button className="text-gray-400 hover:text-gray-200">
@@ -147,7 +152,11 @@ const Dashboard = () => {
        </div>
 
        <div className="flex-1 flex flex-col overflow-hidden">
-
+        <Routes>
+          <Route path="" element={<Home />} />
+          <Route path="user/:userId" element={<UserConversation />} />
+          <Route path="group/:groupId" element={<GroupConverastion />} />
+        </Routes>
        </div>
     </div>
   )

@@ -16,7 +16,7 @@ function App() {
         <Route path="/login" element={<Login />}/>
 
         {/* route proteger */}
-        <Route path="/dashboard" element={
+        <Route path="/chat/*" element={
           <ProtectedRoute>
             <ChatLayout>
               <Dashboard />

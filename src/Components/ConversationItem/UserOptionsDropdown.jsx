@@ -3,7 +3,7 @@ import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/r
 import  { Fragment } from 'react'
 import { axios } from '../../config/axios'
 
-const UserOptionsDropdown = ({conversation}) => {
+const  UserOptionsDropdown = ({conversation}) => {
 
     const changeUserRole = () => {
         if(!conversation.is_user){
